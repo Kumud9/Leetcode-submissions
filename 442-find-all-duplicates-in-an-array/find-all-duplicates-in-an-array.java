@@ -8,7 +8,7 @@ class Solution {
 
         }
           for (int n:map.keySet()) {
-            if (map.get(n) > 1) {
+            if (map.get(n) == 2) {
                 list.add(n);
             }
         }
