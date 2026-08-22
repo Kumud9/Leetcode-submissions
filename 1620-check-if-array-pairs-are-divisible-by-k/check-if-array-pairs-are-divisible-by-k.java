@@ -1,19 +1,18 @@
 class Solution {
     public boolean canArrange(int[] arr, int k) {
-      int [] freq= new int [k];
-      for(int n: arr){
-        int rem=((n %k + k))%k;
-        freq[rem]++;
-      }
+    
+    HashMap<Integer,Integer> map= new HashMap<>();
+    for(int n: arr){
+       int rem= (n%k + k)%k;
+       int need= (k-rem)%k;
 
-      if(freq[0]%2 !=0)return false;
-
-      for(int i=1;i<k;i++){
-        if(freq[i]!=freq[k-i])return false;
-
-      }
-      return true;
-
+    if(map.getOrDefault(need,0)>0)map.put(need,map.get(need)-1);
+    else map.put(rem,map.getOrDefault(rem,0)+1);
+    }
+    for(int c: map.values()){
+        if(c!=0)return false;
+    }
+    return true;
 
     }
 }
